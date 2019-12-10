@@ -5,6 +5,34 @@ public class morzecezoriu {
 	* Skaiciu paieska vartotojo nurodytame intervale i_nuo .. i_iki
 	*/
 	
+	public static String[] ltRaides() {
+		
+		String[] lt_raides = { "Ą", "Č", "Ę", "Ė", "Į", "Š", "Ų", "Ū", "Ž" };
+		
+		return lt_raides;
+	}
+	
+	public static String[] rMorzes() {
+
+		String[] morzes = { "·-", "-···", "-·-·", "-··", "·", "··-·", "--·", "····", "··", "·---", "-·-", "·-··", "--", "-·", "---", "·--·", "--·-", "·-·", "···", "-", "··-", "···-", "·--", "-··-", "-·--", "--··",  
+					
+				"-----", "·----", "··---", "···--", "····-", "·····", "-····", "--···", "---··", "----·",
+				"·-·-·-", "--··--", "··--··", "·----·", "-·-·--", "-··-·", "-·--·", "-·--·-", "·-···", "---···", "-·-·-·", "-···-", "-····-", "··-- ·-", "·-··-·", "···-··-", "·--·-·"
+		};	
+		return morzes;
+	}
+
+	public static String strArr2Str ( String[] str2join, int kiekis ) {
+		
+		String s = "";
+		
+		for ( int i = 0; i < kiekis; i++ ) {
+			
+			s += str2join [ i ]; 
+		}
+		return s;
+	}
+	
 	public static int skaitytiIsFailo ( String[] tekstas ) {
 		
 		String s;
@@ -41,22 +69,10 @@ public class morzecezoriu {
 		}	
 	}
 	
-	public static String[] ltRaides() {
-		
-		String[] lt_raides = { "Ą", "Č", "Ę", "Ė", "Į", "Š", "Ų", "Ū", "Ž" };
-		
-		return lt_raides;
-	}
+	public static String sukeisti ( String eilute, int i )	 {
 	
-	public static String[] rMorzes() {
-
-		String[] morzes = { "·-", "-···", "-·-·", "-··", "·", "··-·", "--·", "····", "··", "·---", "-·-", "·-··", "--", "-·", "---", "·--·", "--·-", "·-·", "···", "-", "··-", "···-", "·--", "-··-", "-·--", "--··",  
-					
-				"-----", "·----", "··---", "···--", "····-", "·····", "-····", "--···", "---··", "----·",
-				"·-·-·-", "--··--", "··--··", "·----·", "-·-·--", "-··-·", "-·--·", "-·--·-", "·-···", "---···", "-·-·-·", "-···-", "-····-", "··-- ·-", "·-··-·", "···-··-", "·--·-·"
-		};	
-		return morzes;
-	}
+		return eilute.substring( 0, i )  +  eilute.substring( i + 1, i + 2 ) + eilute.substring( i,  i + 1 ) + eilute.substring ( i +  2 );
+	}	
 	
 	/**
 	* Keičiam į morzės abėcėlę
@@ -124,19 +140,41 @@ public class morzecezoriu {
 	}
 	
 	public static String[] changeToCesar ( String[] tekstas, int k ) {
-		
-		
-		
-		String[] tekstas_res_ces = tekstas;
-		
-		
-		
-		
-		
-		return tekstas_res_ces;
-	}
-	
-	
+			
+			String[] nesukeisti = { " " , "\t", "\n" };
+						
+			for( int t = 0; t< k; t++) {
+					
+				int iki = tekstas[ t ].length();
+				
+				boolean liko_vienisas_simbolis_gale = false;
+					
+				if ( ( tekstas [ t ].length() % 2 ) != 0 ) {
+					
+					iki = tekstas [ t ].length() - 1;
+					liko_vienisas_simbolis_gale = true;
+				}
+				
+				for (int i = 0; i< iki; i+=2 ) {
+				
+					if ( 
+							( java.util.Arrays.asList(nesukeisti).indexOf ( tekstas [ t ].substring( i, i + 1 ) ) == - 1 )  
+						&& 
+							(  java.util.Arrays.asList(nesukeisti).indexOf ( tekstas [ t ].substring( i + 1, i + 2 ) ) == -1 ) 
+					) { 
+						
+						tekstas [ t ] = sukeisti ( tekstas[ t ], i );
+					}
+				}
+				/*
+				if ( liko_vienisas_simbolis_gale ) {
+					
+					tekstas [ t ] += tekstas [ t ].substring ( iki, 1 ); 
+				}
+				*/
+			}
+			return tekstas;
+	}	
 	public static void surasytiFaile ( String tekstas_res ) {
 	
 		String[] morzes = rMorzes();		
@@ -179,15 +217,12 @@ public class morzecezoriu {
 		String[] tekstas = new String [ 100 ];
 		String[] tekstas_res_ces;
 		String tekstas_res;
-		// String lt_simb = {};
-		int sukeisti;		
-
-		// String[] tekstas; // = new String [ 100 ];		
+																		// String lt_simb = {};
+		int sukeisti;
+																		// String[] tekstas; // = new String [ 100 ];		
 		int iki;
 		int num_lt_simb;
-
-		// String[] nesukeisti = { ' ','\t','\n' };
-
+																		// String[] nesukeisti = { ' ','\t','\n' };
 		// morzecezoriu mc = new morzecezoriu();
 		k = skaitytiIsFailo( tekstas );
 		
@@ -197,49 +232,16 @@ public class morzecezoriu {
 		parodytiKaipAtrodo ( tekstas, k );		
 		
 		tekstas_res_ces = changeToCesar ( tekstas, k ); 
+		
 		/**
 		* Keičiam į morzės abėcėlę
 		*/		
-		tekstas_res = translateToMorse( tekstas_res_ces, k );
+		// tekstas_res = translateToMorse( tekstas_res_ces, k );
+		
+		tekstas_res = strArr2Str ( tekstas_res_ces, k );
 		
 		surasytiFaile ( tekstas_res );
 		
 		System.out.println( "Success..." );
 	}
-}
-
-
-/*
-
-	function sukeisti ( eilute, i )	 {
-		
-			return eilute.substr ( 0, i )  +  eilute [ i + 1 ] + eilute [ i ] + eilute.substr ( i +  2 );
-		}
-	
-		function sifruoti() {
-		
-			
-			num_lt_simb = 0; lt_simb = [];
-			
-			/**
-			* šifravimas Cezario šifru
-			*
-			iki = tekstas.length;
-			
-			if ( ( tekstas.length % 2 ) != 0 ) {
-			
-				iki = tekstas.length - 1;
-			}
-			
-			for ( i = 0; i< iki; i+=2 ) {
-			
-			           // console.log ( i + " " + tekstas [ i ]  + "~" + tekstas [ i + 1 ] + ": "+ ( ( tekstas [ i ]  != ' ' ) && ( tekstas [ i + 1 ] !=  ' ' ) ) );
-			
-				if ( ( nesukeisti.indexOf ( tekstas [ i ] ) == - 1 ) && ( nesukeisti.indexOf ( tekstas [ i + 1 ] ) == -1 ) ) { 
-					
-					tekstas = sukeisti ( tekstas, i );
-				}
-			}
-			// tekstas_res = tekstas;
-		}	
-*/
+}			

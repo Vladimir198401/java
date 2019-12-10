@@ -155,25 +155,24 @@ public class morzecezoriu {
 					liko_vienisas_simbolis_gale = true;
 				}
 				
-				for (int i = 0; i< iki; i+=2 ) {
+				int i = 0;
 				
-					if ( 
-							( java.util.Arrays.asList(nesukeisti).indexOf ( tekstas [ t ].substring( i, i + 1 ) ) == - 1 )  
-						&& 
-							(  java.util.Arrays.asList(nesukeisti).indexOf ( tekstas [ t ].substring( i + 1, i + 2 ) ) == -1 ) 
-					) { 
+			while ( i < iki ) {
+				
+				if ( java.util.Arrays.asList(nesukeisti).indexOf ( tekstas [ t ].substring( i, i + 1 ) ) == - 1 )  {
+					
+					if (  java.util.Arrays.asList(nesukeisti).indexOf ( tekstas [ t ].substring( i + 1, i + 2 ) ) == -1 )  { 
 						
 						tekstas [ t ] = sukeisti ( tekstas[ t ], i );
 					}
+				
+					 i += 2;
+				}else {
+				
+				 i +=1;
 				}
-				/*
-				if ( liko_vienisas_simbolis_gale ) {
-					
-					tekstas [ t ] += tekstas [ t ].substring ( iki, 1 ); 
-				}
-				*/
 			}
-			return tekstas;
+		}	return tekstas;
 	}	
 	public static void surasytiFaile ( String tekstas_res ) {
 	

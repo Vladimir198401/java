@@ -87,7 +87,7 @@ public class morzecezoriu {
 		
 		String[] raides = { 
 			
-			"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",   // kintamasis masivas
+			"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",   // kintamasis masivas
 				
 			"0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
 			".", ",", "?", "'", "!", "/", "(", ")", " &", ":", ";", "=", "–", "_", "\"", "$", "@"
@@ -127,7 +127,7 @@ public class morzecezoriu {
 				if ( ( num_raides = java.util.Arrays.asList ( raides ).indexOf ( simbolis ) ) != -1 ) {  							
 																					//num_raides = priskiriamas eilutes simbolis
 					morzes_simb = morzes [ num_raides ];
-					tekstas_res += morzes_simb + ' ';
+					tekstas_res += morzes_simb +   simbolis  + ' ';
 			
 				} else {
 					
@@ -173,7 +173,8 @@ public class morzecezoriu {
 				}
 			}
 		}	return tekstas;
-	}	
+	}
+	
 	public static void surasytiFaile ( String tekstas_res ) {
 	
 		String[] morzes = rMorzes();		
@@ -235,9 +236,9 @@ public class morzecezoriu {
 		/**
 		* Keičiam į morzės abėcėlę
 		*/		
-		// tekstas_res = translateToMorse( tekstas_res_ces, k );
+		tekstas_res = translateToMorse ( tekstas_res_ces, k ) + strArr2Str ( tekstas_res_ces, k );
 		
-		tekstas_res = strArr2Str ( tekstas_res_ces, k );
+																	// tekstas_res = strArr2Str ( tekstas_res_ces, k ); - pasitestavimui ar teisingai koduoja, pagal Cezario 6
 		
 		surasytiFaile ( tekstas_res );
 		

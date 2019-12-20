@@ -71,7 +71,7 @@
 				s= reader.readLine();
 				daikto_aukstis = Integer.parseInt( s ); 				
 				
-				System.out.println (  "įvesti daikto matmenys: \n ilgis: " + daikto_ilgis + " plotis: " + daikto_aukstis + " aukstis: " + daikto_aukstis );
+				System.out.println (  "įvesti daikto matmenys: \n ilgis: " + daikto_ilgis + " plotis: " + daikto_plotis + " aukstis: " + daikto_aukstis );
 							
 
 			} catch ( IOException e ) {

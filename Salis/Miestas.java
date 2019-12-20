@@ -35,7 +35,7 @@
 		
 		public String present() {
 			
-			return "plotas: " + this.plotas + "gyventoju_skaicius: " + this.gyventoju_skaicius	+ "tankis:" + this.tankis();    //return apraso ka turi grazint ir kaip veikt ir parodo front ende
+			return "plotas: " + this.plotas + "gyventoju_skaicius: " + this.gyventoju_skaicius + "tankis:" + this.tankis();    //return apraso ka turi grazint ir kaip veikt ir parodo front ende
 		}
 		
 		public int tankis() {

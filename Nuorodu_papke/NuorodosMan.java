@@ -5,38 +5,36 @@
 		
 		public int k;
 		
-		public Nuoroda[] nuorodos_man;	
+		public Nuoroda[] nuorodu_sar;	
 
-		public void NuorodosMan( ) {
+		public NuorodosMan( ) {
 			
-			this.nuorodos_man = new Nuoroda [ 100 ];
+			this.nuorodu_sar = new Nuoroda [ 100 ];
 			this.k = 0;
-
 		}
 
 		public void prideti ( Nuoroda nuoroda ) {
-
-			this.nuorodos_man [ this.k ] = nuoroda;
+															//	System.out.println ( this.k + "/k\n" + this.nuorodu_sar.length + "/this.nuorodos_man.lenght\n" );
+			this.nuorodu_sar [ this.k ] = nuoroda;
 			this.k++;
-			
 		}
 		
 		public String present() {
 		
 			String res_str = "";
-		
+															// res_str += this.k + "/k\n";
 			for (int i = 0; i < this.k; i++ ) {
 			
-				res_str += this.nuorodos_man[ i ] .present() + "\n";
+				res_str += this.nuorodu_sar [ i ] .present() + "\n";
 			}
+		
 			return res_str;
 		}
 	}
 	
 	/**
 		atitinka :
-	
-	
+
 	class NuorodosMan {
 	
 		contructor ( nuorodu_sar ) {

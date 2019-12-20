@@ -1,5 +1,4 @@
 
-
 	package Nuorodu_papke;
 
 	import java.io.*;
@@ -32,38 +31,46 @@
 				
 				while ( ( s = frx.readLine() ) != null ) {
 						
-						if ( ! has_header ) { 
-							
-							String[] ss = s.split ( "," );
-														// System.out.println ( ss [ 0 ] + " " + ss [ 1 ] +  " " + ss [ 2 ] + " "  +  ss [ 3 ] + " " + ss.length );
-							
-							nuorodos [ k ] = new Nuoroda ( ss [ 0 ],  ( ss [ 1 ] ),  ( ss [ 2 ] ));
-							k++;
-		
-						} else {
+					if ( ! has_header ) { 
+						
+						String[] ss = s.split ( "," );
+													// System.out.println ( ss [ 0 ] + " " + ss [ 1 ] +  " " + ss [ 2 ] + " "  +  ss [ 3 ] + " " + ss.length );
+						
+						nuorodos [ k ] = new Nuoroda ( ss [ 0 ],  ( ss [ 1 ] ),  ( ss [ 2 ] ));
+						k++;
+	
+					} else {
 
-							has_header = false;						
-						}
+						has_header = false;						
 					}
-					fr.close();  
+				}
 					
-					i = 0;
-					System.out.println ( " Nuskaitytos nuorodas is failo: " ); 
+				fr.close();  
 					
+				i = 0;
+				System.out.println ( " Nuskaitytos nuorodas is failo: " ); 
+				
 				while ( i < k ) {
 						
 					System.out.println ( nuorodos [ i ].present()  );
 					i++;
 				}
-
+				
+						//System.out.println ( " Susikuriam nuorodu manedzeri ..\n " ); 
 
 				NuorodosMan nuorodu_menedzeris = new NuorodosMan();
+				
+						//System.out.println ( " Perkeliam nuorodas is masyvo i nuorodu manedzeri ..\n " ); 				
+				
+				i = 0;
 						
 				while ( i < k ) {
 						
 					nuorodu_menedzeris.prideti ( nuorodos [ i ]  );
 					i++;
-				}		
+				}
+
+				System.out.println ( " Ivedam nauja nuoroda ..\n " ); 								
 						
 				System.out.println ( "url" );
 				s= reader.readLine();
@@ -77,13 +84,21 @@
 				s= reader.readLine();
 				aprasas =s; 
 
-				System.out.println (  "ivesti nuorodos: \n url: " + url + " pav: " + pav + " aprasas: " + aprasas );			
-
-				nuorodu_menedzeris.prideti ( new Nuoroda ( url, pav, aprasas ) );
+				System.out.println (  "ivesti nuorodos: \n url: " + url + " pav: " + pav + " aprasas: " + aprasas );		
+						
+												//System.out.println ( " Sukuriam nauja nuorodos objekta ..\n " ); 								
+				
+				Nuoroda nuoroda_nauja = new Nuoroda ( url, pav, aprasas );
+				
+												//System.out.println ( " Ir nauja nuorodos objekta perduodam nuorodu menedzeriui ..\n " ); 												
+	
+				nuorodu_menedzeris.prideti ( nuoroda_nauja );
+				
+												//System.out.println ( " Nuorodu menedzeris pateikia turimas nuorodas ..\n " ); 												
 				
 				System.out.println ( nuorodu_menedzeris.present() );
-						
-								
+				
+
 			} catch ( IOException e ) {
 					
 					System.out.println ( "Skaitymo klaida" );

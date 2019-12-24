@@ -7,19 +7,19 @@
 			
 		public static void main ( String[] args ) {
 		
-			
 			String s;
-			Auto [] Automobiliai = new Auto[ 50 ];
+			Auto [] Automobiliai = new Auto[ 10 ];
 			Auto Automobilis_1;
 			Auto Automobilis_2;
 			double nuvaziotas_atstumas = 0.0;
-			double greitis = 0;
+			double greitis = 0.0;
 			double laiko_intervalas = 0.0;
 			double atstumas_tarp_automobiliu  = 0.0;
-			double Judeti = 0.0;	
-			int i = 0;
-			int k = 0;
+			double judeti = 0.0;	
 			double Atstumas = 0.0;
+			double keistiGreiti = 0.0;
+			//String akva;
+			//double praejeslaikas = 0;
 			
 				InputStreamReader stream = new InputStreamReader(System.in);
 					
@@ -35,92 +35,74 @@
 					
 					System.out.println ();
 			
-					System.out.println ( " ivesti laika automobiliams" );
+					System.out.println ( " ivesti laika Sekundem" );
 					s= reader.readLine();
 					laiko_intervalas = Double.parseDouble( s ); 
-				
-					System.out.println ( " ivesti automobiliu atstuma" );
-					s= reader.readLine();
-					Atstumas = Double.parseDouble( s ); 
-				
-
 						
-						System.out.println ( "ivesti greiti 1 automobiliui" );
-						s= reader.readLine();
-						greitis = Double.parseDouble( s ); 	
+						// judeti.laiko_intervalas;  ?
+
+					System.out.println ( "ivesti greiti 1 automobiliui" );
+					s= reader.readLine();
+					greitis = Double.parseDouble( s ); 	
 					
 						Automobilis_1.keistiGreiti (greitis);
 						
-						
-						System.out.println ( "ivesti greiti 2 automobiliui" );
-						s= reader.readLine();
-						greitis = Double.parseDouble( s ); 	
+					System.out.println ( "ivesti greiti 2 automobiliui" );
+					s= reader.readLine();
+					greitis = Double.parseDouble( s ); 	
 						
 						Automobilis_2.keistiGreiti (greitis);
-						
+				
+					System.out.println ( " ivesti automobiliu atstuma Metrais" );
+					s= reader.readLine();
+					Atstumas = Double.parseDouble( s ); 
 						
 			} catch ( IOException e ) {
 				
 			System.out.println ( "Skaitymo klaida" );
 				
 			}
-			
-			i=0;
 
-			System.out.println ( "----------------------------------------" );
-			System.out.println ( "|   Laikas     |  Nuvaziuotas atstumas |" );
-			System.out.println ( "|   	     |   Auto1   |  Auto 2   |" );
-			System.out.println ( "----------------------------------------" );
+			System.out.println ( "------------------------------------------------------" );
+			System.out.println ( "|   Laikas |  Nuvaziuotas atstumas Metrais           |" );
+			System.out.println ( "|             |   Auto1   | Atstumas tarp |  Auto 2  |" );
+			System.out.println ( "------------------------------------------------------" );
 			
 			
-			while (( Automobilis_1.nuvaziotas_atstumas() <= Atstumas ) || ( Automobilis_2.nuvaziotas_atstumas() <= Atstumas ) 
-			) {
-			
+			while ( Automobilis_1.nuvaziotas_atstumas() <= Atstumas  &&  Automobilis_2.nuvaziotas_atstumas() <= Atstumas ) {
+				/*
+				if (nuvaziotas_atstumas() > Atstumas  ){
+				
+					nuvaziotas_atstumas() = Atstumas;
+				}
+				*/
 				Automobilis_1.judeti ( laiko_intervalas );
 				
 				Automobilis_2.judeti ( laiko_intervalas );
 				
+				judeti += laiko_intervalas; 																// arba galima apseit be klases ir aprasyt tik cia praejeslaikas += laiko_intervalas;
+				
+				/*
+				atstumas_tarp_automobiliu  = akva(Atstumas - (Automobilis_1.nuvaziotas_atstumas() + Automobilis_2.nuvaziotas_atstumas()));
+				
+				Atstumas / 2 = susitikimo_taskas;
+				
+				susitikimo_taska = 0
+				
+				susitikimo_taskas  = akva(Atstumas - (Automobilis_1.nuvaziotas_atstumas() + Automobilis_2.nuvaziotas_atstumas()));
+				*/
+				
 				System.out.println ( 
 				
-					String.format( "| %10.2f |  %10.2f | %10.2f |", laiko_intervalas, Automobilis_1.nuvaziotas_atstumas(), Automobilis_2.nuvaziotas_atstumas())
+				String.format( "| %10.0f |  %10.0f | %10.0f | %10.0f |",
+					judeti,
+						Automobilis_1.nuvaziotas_atstumas(),
+							Atstumas - (Automobilis_1.nuvaziotas_atstumas() + Automobilis_2.nuvaziotas_atstumas()),
+								Automobilis_2.nuvaziotas_atstumas())
 				);
 				
 			}
-			System.out.println ( "---------------------------------------" );
-			
-					
-					System.out.println ( Automobilis_1.atstumas_tarp_automobiliu());
-					System.out.println ( Automobilis_2.atstumas_tarp_automobiliu()); 
-					System.out.println ( Automobilis_1.nuvaziotas_atstumas() + Automobilis_2.nuvaziotas_atstumas() );
-			
+			System.out.println ( "------------------------------------------------------" );
+		
 		}	
-		/*
-				boolean atstumas_tarp_automobiliu = false;
-
-				if ( atstumas > nuvaziotas_atstumas){
-					
-				boolean atstumas_tarp_automobiliu = false;
-					
-				}else{
-					
-				boolean atstumas_tarp_automobilius = true;
-					
-				}
-				System.out.println ( atstumas_tarp_automobiliu );
-				
-				///////
-				
-				boolean nuvaziotas_atstumas = false
-
-				if ( atstumas < nuvaziotas_atstumas){
-					
-				boolean nuvaziotas_atstumas = false
-					
-				}else{
-					
-				boolean nuvaziotas_atstumas = true
-					
-				}
-				System.out.println ( atstumas_tarp_automobiliu );
-				*/	
 	}

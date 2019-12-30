@@ -11,15 +11,25 @@
 			Auto [] Automobiliai = new Auto[ 10 ];
 			Auto Automobilis_1;
 			Auto Automobilis_2;
+			
 			double nuvaziotas_atstumas = 0.0;
 			double greitis = 0.0;
 			double laiko_intervalas = 0.0;
+			
+			double laiko_intervalas_x = 0.0;
+			double liko_nuvaziuoti_1 = 0.0;
+			double liko_nuvaziuoti_2 = 0.0;
+			
+			double maza_paklaida = 0.01;
+			
 			double atstumas_tarp_automobiliu  = 0.0;
 			double judeti = 0.0;	
 			double Atstumas = 0.0;
 			double keistiGreiti = 0.0;
-			//String akva;
-			//double praejeslaikas = 0;
+			
+			double sveikas = 0.0;
+			
+			double skaiciojamas_atstumas = 0.0;
 			
 				InputStreamReader stream = new InputStreamReader(System.in);
 					
@@ -38,8 +48,6 @@
 					System.out.println ( " ivesti laika Sekundem" );
 					s= reader.readLine();
 					laiko_intervalas = Double.parseDouble( s ); 
-						
-						// judeti.laiko_intervalas;  ?
 
 					System.out.println ( "ivesti greiti 1 automobiliui" );
 					s= reader.readLine();
@@ -69,36 +77,55 @@
 			System.out.println ( "------------------------------------------------------" );
 			
 			
-			while ( Automobilis_1.nuvaziotas_atstumas() <= Atstumas  &&  Automobilis_2.nuvaziotas_atstumas() <= Atstumas ) {
-				/*
-				if (nuvaziotas_atstumas() > Atstumas  ){
+			while ( ( Automobilis_1.nuvaziotas_atstumas() <= ( Atstumas - maza_paklaida  )  ) || ( Automobilis_2.nuvaziotas_atstumas() <= ( Atstumas  - maza_paklaida ) ) )  {
 				
-					nuvaziotas_atstumas() = Atstumas;
+					sveikas += laiko_intervalas;
+				
+				if ( Automobilis_1.nuvaziotas_atstumas() < Atstumas ) {
+					
+					liko_nuvaziuoti_1  =  Atstumas - Automobilis_1.nuvaziotas_atstumas();  
+					
+					laiko_intervalas_x = laiko_intervalas;
+					
+					if ( ( Automobilis_1.greitis * laiko_intervalas ) > liko_nuvaziuoti_1 ) {
+												
+						laiko_intervalas_x = liko_nuvaziuoti_1  / Automobilis_1.greitis;	
+					}
+				
+					Automobilis_1.judeti ( laiko_intervalas_x );
+					
+					skaiciojamas_atstumas += laiko_intervalas_x;
 				}
-				*/
-				Automobilis_1.judeti ( laiko_intervalas );
 				
-				Automobilis_2.judeti ( laiko_intervalas );
+				if ( Automobilis_2.nuvaziotas_atstumas() < Atstumas ) {
+					
+					liko_nuvaziuoti_2  = Atstumas - Automobilis_2.nuvaziotas_atstumas();  
+					
+					 laiko_intervalas_x = laiko_intervalas;
+					
+					if ( ( Automobilis_2.greitis * laiko_intervalas ) > liko_nuvaziuoti_2 ) {
+												
+						laiko_intervalas_x = liko_nuvaziuoti_2  / Automobilis_2.greitis;
+					}
 				
-				judeti += laiko_intervalas; 																// arba galima apseit be klases ir aprasyt tik cia praejeslaikas += laiko_intervalas;
+					Automobilis_2.judeti ( laiko_intervalas_x );
+					
+					judeti += laiko_intervalas_x; 
+				}
 				
-				/*
-				atstumas_tarp_automobiliu  = akva(Atstumas - (Automobilis_1.nuvaziotas_atstumas() + Automobilis_2.nuvaziotas_atstumas()));
+				atstumas_tarp_automobiliu  =  Atstumas - (Automobilis_1.nuvaziotas_atstumas() + Automobilis_2.nuvaziotas_atstumas());
 				
-				Atstumas / 2 = susitikimo_taskas;
+				if ( atstumas_tarp_automobiliu <= 0 ) {
 				
-				susitikimo_taska = 0
-				
-				susitikimo_taskas  = akva(Atstumas - (Automobilis_1.nuvaziotas_atstumas() + Automobilis_2.nuvaziotas_atstumas()));
-				*/
-				
+					atstumas_tarp_automobiliu = (Automobilis_1.nuvaziotas_atstumas() + Automobilis_2.nuvaziotas_atstumas() - Atstumas);
+		  
+				}
 				System.out.println ( 
-				
-				String.format( "| %10.0f |  %10.0f | %10.0f | %10.0f |",
-					judeti,
-						Automobilis_1.nuvaziotas_atstumas(),
-							Atstumas - (Automobilis_1.nuvaziotas_atstumas() + Automobilis_2.nuvaziotas_atstumas()),
-								Automobilis_2.nuvaziotas_atstumas())
+					String.format( "| %10.0f |  %10.0f | %10.0f | %10.0f |",
+						sveikas - ( laiko_intervalas - laiko_intervalas_x),
+							Automobilis_1.nuvaziotas_atstumas(),
+								atstumas_tarp_automobiliu,
+									Automobilis_2.nuvaziotas_atstumas())
 				);
 				
 			}

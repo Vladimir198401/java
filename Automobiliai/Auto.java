@@ -5,8 +5,6 @@
 
 		public Double greitis;
 		public Double laiko_intervalas;
-		public Double Atstumas;
-		public Double nuvaziotas_atstumas;
 		public Auto() {
 			
 			this.greitis = 0.0;
@@ -24,19 +22,8 @@
 		}
 	
 		public double nuvaziotas_atstumas () {
-			/*
-			Skaiciojamas_atstumas = ( this.greitis * laiko_intervalas );
-	
-			this.Atstumas = Atstumas;
 			
-			if (Skaiciojamas_atstumas > this.Atstumas) {
-				
-				Skaiciojamas_atstumas = this.Atstumas;
-			}
-			return (Skaiciojamas_atstumas);
-				*/
-			return ( this.greitis * laiko_intervalas );
+			return (this.greitis * laiko_intervalas);
 		}
 		
-	}	
-			
+	}

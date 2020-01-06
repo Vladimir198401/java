@@ -93,20 +93,30 @@
 												
 						laiko_intervalas_x = liko_nuvaziuoti_1  / Automobilis_1.greitis;
 						
+							atstumas_tarp_automobiliu  =  Atstumas - (Automobilis_1.nuvaziotas_atstumas() + Automobilis_2.nuvaziotas_atstumas());
+							
 							if ( atstumas_tarp_automobiliu_x <= 0 ) {
 							
 							atstumas_tarp_automobiliu_x = (Automobilis_1.greitis * (sveikas - ( laiko_intervalas - laiko_intervalas_x)) + (Automobilis_2.greitis * (sveikas - ( laiko_intervalas - laiko_intervalas_x)))) - Atstumas;
 					  
 							}
+							
+							atstumas_tarp_automobiliu_x = (Automobilis_1.greitis * (sveikas - ( laiko_intervalas - laiko_intervalas_x)) + (Automobilis_2.greitis * (sveikas - ( laiko_intervalas - laiko_intervalas_x)))) - Atstumas;
 						
-						/*
+							if(atstumas_tarp_automobiliu_x > Atstumas) {
+								
+							atstumas_tarp_automobiliu_x = Atstumas;
+								
+							}
+						
+						
 						System.out.println (
-							String.format(  "| %10.0f |  %10.0f |  %10.0f     %10.0f |" , 
+							String.format(  "| %10.0f |  %10.0f | %10.0f | %10.0f |" , 
 								(sveikas - ( laiko_intervalas - laiko_intervalas_x)),		
 									Atstumas,
-										Automobilis_1.nuvaziotas_atstumas() + (laiko_intervalas_x * Automobilis_1.greitis),
-											Automobilis_1.nuvaziotas_atstumas() + (laiko_intervalas_x * Automobilis_1.greitis)));
-							*/
+										atstumas_tarp_automobiliu_x,
+											atstumas_tarp_automobiliu_x));
+							
 					}
 				
 					Automobilis_1.judeti ( laiko_intervalas_x );
@@ -139,7 +149,7 @@
 								
 							}
 						System.out.println ( 
-							String.format( "| %10.0f |  %10.0f   %10.0f   %10.0f |",
+							String.format( "| %10.0f |  %10.0f | %10.0f | %10.0f |",
 								(sveikas - ( laiko_intervalas - laiko_intervalas_x)),
 									atstumas_tarp_automobiliu_x, // - ((laiko_intervalas_x * Automobilis_1.greitis) /2 ),  
 										atstumas_tarp_automobiliu_x, //(laiko_intervalas_x * Automobilis_1.greitis),

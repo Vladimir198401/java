@@ -5,10 +5,13 @@
 
 		public Double greitis;
 		public Double laiko_intervalas;
+		public Double laiko_intervalas_x;
+		public Double sveikas;
 		public Auto() {
 			
 			this.greitis = 0.0;
 			this.laiko_intervalas = 0.0;
+			
 		}
 		
 		public void keistiGreiti ( double greitis ){
@@ -25,5 +28,6 @@
 			
 			return (this.greitis * laiko_intervalas);
 		}
+		
 		
 	}

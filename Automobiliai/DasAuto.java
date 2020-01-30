@@ -1,4 +1,3 @@
-
 	package Automobiliai;
 
 	import java.io.*;
@@ -8,30 +7,22 @@
 		public static void main ( String[] args ) {
 		
 			String s;
-			Auto [] Automobiliai = new Auto[ 10 ];
 			Auto Automobilis_1;
 			Auto Automobilis_2;
 			
-			double nuvaziotas_atstumas = 0.0;
 			double greitis = 0.0;
 			double laiko_intervalas = 0.0;
-			
 			double laiko_intervalas_x = 0.0;
 			double liko_nuvaziuoti_1 = 0.0;
 			double liko_nuvaziuoti_2 = 0.0;
-			
 			double maza_paklaida = 0.01;
 			
 			double atstumas_tarp_automobiliu  = 0.0;
 			double atstumas_tarp_automobiliu_x = 0.0;
-			double judeti = 0.0;	
+	
 			double Atstumas = 0.0;
-			double keistiGreiti = 0.0;
-			
 			double sveikas = 0.0;
-			double nesveikas = 0.0;
 			
-			double skaiciojamas_atstumas = 0.0;
 			
 				InputStreamReader stream = new InputStreamReader(System.in);
 					

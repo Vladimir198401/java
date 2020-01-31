@@ -1,1 +1,1 @@
-set CLASSPATH=C:\Users\Vladimir\Desktop\java\externals\mysql-connector-java-8.0.16\mysql-connector-java-8.0.16.jar;C:\Users\Vladimir\Desktop\java 
+set CLASSPATH=C:\Users\Vladimir\Desktop\java\externals\mysql-connector-java-8.0.16\mysql-connector-java-8.0.16.jar;C:\Users\Vladimir\Desktop\java;C:\Users\Vladimir\Desktop\java\stud 

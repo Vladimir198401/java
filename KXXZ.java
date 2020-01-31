@@ -27,13 +27,12 @@ implements KeyListener, ActionListener, WindowListener {
 		Statement stmt = null;
 		
 		new KXXZ ();
+		
 		try{
-																																							//STEP 2: Register JDBC driver
-			// Class.forName( "com.mysql.jdbc.Driver" );																				 // .newInstance();
-																																						//STEP 3: Open a connection
+			
 			System.out.println( "Connecting to database..." );
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-																															//STEP 4: Execute a query
+			
 			System.out.println( "Creating statement..." );
 			stmt = conn.createStatement();
 			String sql;
@@ -66,22 +65,13 @@ implements KeyListener, ActionListener, WindowListener {
 			}; 
 			String[] reiksmes = { "", "", "", "", "", "", "", "", "" };
 			
-			String kepure =  "|        |         |             id           |       gauta           |       parduota        |\n"; //  "     menuo  |   id_prekes   |  id_grupes  |   id_rinkos  |   kiekis_gauta   | suma_gauta | kiekis_parduota | suma_parduota |" );
+			String kepure =  "|        |         |             id           |       gauta           |       parduota        |\n"; 
 			Lentelex lent = new Lentelex ( proceso_antr, kepure );
 			
-
 			lent.antraste();
 			
-			//System.out.println ( "----------------------------------------------------------------------------------------------------------------------------------------------" );
-			//System.out.println ( "| id |     menuo  |   id_prekes   |  id_grupes  |   id_rinkos  |   kiekis   | suma | kiekis_parduota | suma_parduota |" );
-			//System.out.println ( "----------------------------------------------------------------------------------------------------------------------------------------------" );
-			
-			
-
-																																										//STEP 5: Extract data from result set
 			while ( rs.next() ) {
-				
-																																										//Retrieve by column name
+
 				int id  = rs.getInt ("id");
 				int menuo = rs.getInt ( "menuo" );
 				int id_prekes = rs.getInt ( "id_prekes" );
@@ -92,27 +82,6 @@ implements KeyListener, ActionListener, WindowListener {
 				int kiekis_parduota = rs.getInt ("kiekis_parduota");
 				double suma_parduota = rs.getDouble ("suma_parduota");
 																																										//Display values
-				/*System.out.println ( 
-
-					String.format (
-
-						"| %10d | %10d | %10d | %10d | %10d | %10d | %10.2f | %10.2f | %10.2f |"
-						, id 
-						, menuo
-						, id_prekes
-						, id_grupes
-						, id_rinkos
-						, kiekis_gauta
-						, suma_gauta
-						, kiekies_parduota
-						, suma_parduota
-					) 
-				);
-				System.out.println ( "----------------------------------------------------------------------------------" );
-				*/
-				
-				//reiksmes [ 0 ] = laikas ( t );
-				//reiksmes [ 1 ] = String.format ( " %7.2f", s );
 				reiksmes [ 0 ] = String.format ( " %5d", id );
 				reiksmes [ 1 ] = String.format ( " %6d", menuo );
 				reiksmes [ 2 ] = String.format ( " %5d", id_prekes );
@@ -166,7 +135,6 @@ implements KeyListener, ActionListener, WindowListener {
 		System.out.println( "Goodbye!" );
 	}																																								//end main
 	
-
 public KXXZ() {
 		
 		setLayout(new FlowLayout()); // "super" Frame sets to FlowLayout
